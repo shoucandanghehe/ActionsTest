@@ -19,7 +19,7 @@ jobs:
     - name: Update
       uses: actions/upload-artifact@v2
       with:
-        name: Test_${{ env.CommitID }}
+        name: Test_${{ env.CommitID }}_Linux
         path: test.txt
   build-windows: 
     runs-on: windows-latest
@@ -27,9 +27,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: test
       run: |
-        echo ${{ GITHUB.SHA }}
+        $CommitID="${{ GITHUB.SHA }}".Substring(0,7)
+        echo $CommitID > test.txt
+        echo "CommitID=$CommitID" >> $GITHUB_ENV
     - name: Update
       uses: actions/upload-artifact@v2
       with:
-        name: Test_${{ env.CommitID }}
+        name: Test_${{ env.CommitID }}_Windows
         path: test.txt
