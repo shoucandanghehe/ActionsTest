@@ -1,7 +1,7 @@
 name: CI test
 
 env: 
-  git_hash: ${{GITHUB_SHA}}
+  git_hash: ${{ GITHUB.SHA }}
 on:
   push:
     branches: [ main ]
