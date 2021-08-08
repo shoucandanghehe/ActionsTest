@@ -11,9 +11,11 @@ jobs:
   build-linux:
     runs-on: ubuntu-20.04
     steps:
+    - uses: actions/checkout@v2
     - name: test
       run: |
         git_hash=$(git rev-parse --short "${{ GITHUB.SHA }}")
+        ls
         mkdir test
         touch test.txt
         echo ${git_hash} > test.txt
