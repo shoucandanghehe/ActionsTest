@@ -21,3 +21,17 @@ jobs:
       with:
         name: Test_${{ env.git_hash }}
         path: test.txt
+  build-windows: 
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: test
+      run: |
+        for /F %%i in ('git rev-parse --short "${{ GITHUB.SHA }}"') do ( set git_hash=%%i)
+        echo "git_hash=%git_hash%" >> $GITHUB_ENV
+        echo %git_hash% > test.txt
+    - name: Update
+      uses: actions/upload-artifact@v2
+      with:
+        name: Test_${{ env.git_hash }}
+        path: test.txt
