@@ -7,15 +7,16 @@ on:
     branches: [ main ]
 
 jobs:
-
   build-linux:
     runs-on: ubuntu-20.04
     steps:
     - name: test
       run: |
+        git_hash=$(git rev-parse --short "${{ GITHUB.SHA }}")
+        echo git_hash > ${{ env.git_hash }}
         mkdir test
         touch test.txt
-        echo ${{ env.git_hash }} > test.txt
+        echo ${git_hash} > test.txt
     - name: Update
       uses: actions/upload-artifact@v2
       with:
