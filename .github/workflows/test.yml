@@ -1,8 +1,5 @@
 name: CI test
 
-env: 
-  git_hash: ${{ GITHUB.SHA }}
-
 on:
   push:
     branches: [ main ]
@@ -15,12 +12,10 @@ jobs:
     - name: test
       run: |
         git_hash=$(git rev-parse --short "${{ GITHUB.SHA }}")
-        ls
+        echo "git_hash=${git_hash}" >> $GITHUB_ENV
         mkdir test
         touch test.txt
-        echo ${git_hash}233 > test.txt
-        echo ${{ GITHUB.JOB }}233 >> test.txt
-        echo ${{ GITHUB.ACTION }}233 >> test.txt
+        echo ${git_hash} > test.txt
     - name: Update
       uses: actions/upload-artifact@v2
       with:
