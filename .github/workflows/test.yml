@@ -27,8 +27,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: test
       run: |
-        echo ${{ env.CommitID }}
-        GetCommitID.bat
+        .\GetCommitID.bat
         echo ${{ env.CommitID }}
     - name: Update
       uses: actions/upload-artifact@v2
