@@ -31,7 +31,7 @@ jobs:
         $CommitID="${{ GITHUB.SHA }}".Substring(0,7)
         echo $CommitID > test.txt
         echo "CommitID=$CommitID"
-        echo "CommitID=$CommitID" >> $GITHUB_ENV
+        echo "CommitID=$CommitID" >> $env:GITHUB_ENV
     - name: Update
       uses: actions/upload-artifact@v2
       with:
