@@ -1,7 +1,7 @@
 name: CI test
 
 env: 
-  git_hash: ${{ GITHUB.SHA }}"
+  git_hash: ${{ GITHUB.SHA }}
 
 on:
   push:
