@@ -32,10 +32,13 @@ jobs:
         echo "CommitID=$CommitID"
         echo "CommitID=$CommitID" >> $env:GITHUB_ENV
         python test.py
+    - name: GetVersion
+      run: |
+        .\.github\workflows\getVersion.bat
     - name: Update
       uses: actions/upload-artifact@v2
       with:
-        name: Test_${{ env.CommitID }}_Windows
+        name: Techmino_${{ env.Version }}_${{ env.CommitID }}_Windows
         path: test.txt
   build-macOS:
     runs-on: macos-10.15
