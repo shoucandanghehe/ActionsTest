@@ -27,7 +27,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: test
       run: |
-        chcp 65001
         $CommitID="${{ GITHUB.SHA }}".Substring(0,7)
         echo $CommitID > test.txt
         echo "CommitID=$CommitID"
@@ -36,4 +35,19 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: Test_${{ env.CommitID }}_Windows
+        path: test.txt
+  build-macOS:
+    runs-on: macos-10.15
+    steps:
+    - uses: actions/checkout@v2
+    - name: test
+      run: |
+        CommitID=$(git rev-parse --short "${{ GITHUB.SHA }}")
+        echo $CommitID
+        echo "CommitID=${CommitID}" >> $GITHUB_ENV
+        echo ${CommitID} > test.txt
+    - name: Update
+      uses: actions/upload-artifact@v2
+      with:
+        name: Test_${{ env.CommitID }}_Linux
         path: test.txt
