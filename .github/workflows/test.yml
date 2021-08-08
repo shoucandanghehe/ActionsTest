@@ -31,6 +31,7 @@ jobs:
         echo $CommitID > test.txt
         echo "CommitID=$CommitID"
         echo "CommitID=$CommitID" >> $env:GITHUB_ENV
+        python test.py
     - name: Update
       uses: actions/upload-artifact@v2
       with:
