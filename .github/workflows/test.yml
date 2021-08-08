@@ -18,7 +18,9 @@ jobs:
         ls
         mkdir test
         touch test.txt
-        echo ${git_hash} > test.txt
+        echo ${git_hash}233 > test.txt
+        echo ${{ GITHUB.JOB }}233 >> test.txt
+        echo ${{ GITHUB.ACTION }}233 >> test.txt
     - name: Update
       uses: actions/upload-artifact@v2
       with:
