@@ -51,8 +51,8 @@ jobs:
         echo "CommitID=${CommitID}" >> $GITHUB_ENV
         mkdir test
         mkdir tttest
-        cp -r test tttest/test
         echo ${CommitID} > ./test/test.txt
+        mv test tttest
     - name: Update
       uses: actions/upload-artifact@v2
       with:
