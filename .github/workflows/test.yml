@@ -52,10 +52,7 @@ jobs:
         mkdir test
         echo ${CommitID} > ./test/test.txt
         ln -s ./test/test.txt ./test/linktest.txt
-    - name: Create Upload Folder
-      run: |
-        mkdir tttest
-        mv test tttest
+        ls ./test
     - name: Update
       uses: actions/upload-artifact@v2
       with:
