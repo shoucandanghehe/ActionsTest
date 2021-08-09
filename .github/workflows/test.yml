@@ -51,10 +51,11 @@ jobs:
         echo "CommitID=${CommitID}" >> $GITHUB_ENV
         mkdir test
         echo ${CommitID} > ./test/test.txt
-    - name: Update
+    - name: Create Upload Folder
       run: |
         mkdir tttest
         mv test tttest
+    - name: Update
       uses: actions/upload-artifact@v2
       with:
         name: Test_${{ env.CommitID }}_macOS
