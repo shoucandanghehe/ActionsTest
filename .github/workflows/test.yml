@@ -51,6 +51,8 @@ jobs:
         echo "CommitID=${CommitID}" >> $GITHUB_ENV
         mkdir test
         echo ${CommitID} > ./test/test.txt
+        toush ./test/linktest.txt
+        ln -s ./test/test.txt ./test/linktest.txt
     - name: Create Upload Folder
       run: |
         mkdir tttest
