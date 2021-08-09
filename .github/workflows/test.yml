@@ -50,10 +50,11 @@ jobs:
         echo $CommitID
         echo "CommitID=${CommitID}" >> $GITHUB_ENV
         mkdir test
-        mkdir tttest
         echo ${CommitID} > ./test/test.txt
-        mv test tttest
     - name: Update
+      run: |
+        mkdir tttest
+        mv test tttest
       uses: actions/upload-artifact@v2
       with:
         name: Test_${{ env.CommitID }}_macOS
