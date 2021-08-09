@@ -49,9 +49,10 @@ jobs:
         CommitID=$(git rev-parse --short "${{ GITHUB.SHA }}")
         echo $CommitID
         echo "CommitID=${CommitID}" >> $GITHUB_ENV
-        echo ${CommitID} > test.txt
+        mkdir test
+        echo ${CommitID} > ./test/test.txt
     - name: Update
       uses: actions/upload-artifact@v2
       with:
         name: Test_${{ env.CommitID }}_macOS
-        path: test.txt
+        path: test
