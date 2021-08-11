@@ -12,6 +12,9 @@ on:
       body:
         description: 'release详细信息'
         required: true
+      tag: 
+        description: 'release使用的tag'
+        required: true
 
 jobs:
   build-linux:
