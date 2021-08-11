@@ -1,9 +1,6 @@
 name: release test
 
 on: 
-  push:
-    tags:
-    - '*'
   workflow_dispatch:
     inputs:
       name: 
