@@ -14,18 +14,34 @@ on:
         required: true
 
 jobs:
-  build:
+  build-linux:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
-        run: echo ${{ github.sha }} > Release.txt
+        run: echo ${{ github.sha }} > linux.txt
       - name: Test
-        run: cat Release.txt
+        run: cat linux.txt
       - name: Release
         uses: softprops/action-gh-release@v1
         name: ${{ github.event.inputs.name }}
         body: ${{ github.event.inputs.body }}
         with:
-          files: Release.txt
+          files: linux.txt
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: echo ${{ github.sha }} > windows.txt
+      - name: Test
+        run: cat windows.txt
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        name: ${{ github.event.inputs.name }}
+        body: ${{ github.event.inputs.body }}
+        with:
+          files: windows.txt
