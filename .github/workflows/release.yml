@@ -4,6 +4,14 @@ on:
   push:
     tags:
     - '*'
+  workflow_dispatch:
+    inputs:
+      name: 
+        description: '将要发布的版本名称'
+        required: true
+      body:
+        description: 'release详细信息'
+        required: true
 
 jobs:
   build:
@@ -17,5 +25,7 @@ jobs:
         run: cat Release.txt
       - name: Release
         uses: softprops/action-gh-release@v1
+        name: ${{ github.event.inputs.name }}
+        body: ${{ github.event.inputs.body }}
         with:
           files: Release.txt
