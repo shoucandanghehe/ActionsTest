@@ -28,6 +28,7 @@ jobs:
         with:
           name: ${{ github.event.inputs.name }}
           body: ${{ github.event.inputs.body }}
+          tag_name: ${{ github.event.inputs.tag }}
           files: linux.txt
 
   build-windows:
@@ -44,4 +45,5 @@ jobs:
         with:
           name: ${{ github.event.inputs.name }}
           body: ${{ github.event.inputs.body }}
+          tag_name: ${{ github.event.inputs.tag }}
           files: windows.txt
