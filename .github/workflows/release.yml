@@ -25,9 +25,9 @@ jobs:
         run: cat linux.txt
       - name: Release
         uses: softprops/action-gh-release@v1
-        name: ${{ github.event.inputs.name }}
-        body: ${{ github.event.inputs.body }}
         with:
+          name: ${{ github.event.inputs.name }}
+          body: ${{ github.event.inputs.body }}
           files: linux.txt
 
   build-windows:
@@ -41,7 +41,7 @@ jobs:
         run: cat windows.txt
       - name: Release
         uses: softprops/action-gh-release@v1
-        name: ${{ github.event.inputs.name }}
-        body: ${{ github.event.inputs.body }}
         with:
+          name: ${{ github.event.inputs.name }}
+          body: ${{ github.event.inputs.body }}
           files: windows.txt
