@@ -1,0 +1,14 @@
+name: lua test
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-windows: 
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: test
+      run: |
+        lua getVersion.lua -code
