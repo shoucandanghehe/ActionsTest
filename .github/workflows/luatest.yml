@@ -14,5 +14,5 @@ jobs:
         curl -OL https://nchc.dl.sourceforge.net/project/luabinaries/5.4.2/Tools%20Executables/lua-5.4.2_Win64_bin.zip
         7z x lua-5.4.2_Win64_bin.zip -olua
         $pwd=$(get-location).Path
-        [environment]::SetEnvironmentvariable("PATH", "$pwd\lua", "Machine")
+        [environment]::SetEnvironmentvariable("PATH", ";$pwd\lua", "Machine")
         lua.exe .\.github\workflows\getVersion.lua -code
