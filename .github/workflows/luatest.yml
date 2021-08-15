@@ -16,6 +16,7 @@ jobs:
         rename-Item '.\lua\lua54.exe' -NewName 'lua.exe'
         cd .\lua
         ls
+        cd ..
         $pwd=$(get-location).Path
         [Environment]::SetEnvironmentVariable("Path",[Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) +";$pwd\lua",[EnvironmentVariableTarget]::Machine)
         [environment]::GetEnvironmentvariable("PATH", "Machine")
