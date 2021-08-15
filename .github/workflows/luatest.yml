@@ -20,4 +20,4 @@ jobs:
         $pwd=$(get-location).Path
         [Environment]::SetEnvironmentVariable("Path",[Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) +";$pwd\lua",[EnvironmentVariableTarget]::Machine)
         [environment]::GetEnvironmentvariable("PATH", "Machine")
-        lua .\.github\workflows\getVersion.lua -code
+        lua.exe .\.github\workflows\getVersion.lua -code
