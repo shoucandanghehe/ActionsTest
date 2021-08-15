@@ -15,4 +15,4 @@ jobs:
         7z x lua-5.4.2_Win64_bin.zip -olua
         $pwd=$(get-location).Path
         [environment]::SetEnvironmentvariable("path", "$pwd\lua", "Machine")
-        lua .\.github\workflows\getVersion.lua -code
+        lua.exe .\.github\workflows\getVersion.lua -code
