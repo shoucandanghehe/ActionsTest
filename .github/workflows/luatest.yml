@@ -5,10 +5,17 @@ on:
     branches: [ main ]
 
 jobs:
-  build-windows: 
+  build: 
     runs-on: macos-10.15
     steps:
     - uses: actions/checkout@v2
+    - name: Install lua
+      run: |
+        curl -OL http://www.lua.org/ftp/lua-5.4.3.tar.gz
+        tar zxf lua-5.4.3.tar.gz
+        cd lua-5.4.3
+        make macosx test
+        make install
     - name: test
       run: |
         lua getVersion.lua -code
