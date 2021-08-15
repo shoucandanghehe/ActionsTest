@@ -23,4 +23,5 @@ jobs:
     - name: test
       run: |
         [environment]::GetEnvironmentvariable("PATH", "Machine")
-        lua.exe .\.github\workflows\getVersion.lua -code
+        .\lua\lua.exe .\.github\workflows\getVersion.lua -code
+        lua .\.github\workflows\getVersion.lua -code
