@@ -22,4 +22,5 @@ jobs:
         [environment]::GetEnvironmentvariable("PATH", "Machine")
     - name: test
       run: |
+        [environment]::GetEnvironmentvariable("PATH", "Machine")
         lua.exe .\.github\workflows\getVersion.lua -code
