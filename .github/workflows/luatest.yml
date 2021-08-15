@@ -18,4 +18,4 @@ jobs:
         sudo make install
     - name: test
       run: |
-        lua getVersion.lua -code
+        lua ./.github/workflows/getVersion.lua -code
