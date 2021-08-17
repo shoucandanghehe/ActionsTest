@@ -9,19 +9,13 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install lua
+    - name: Download lua
       run: |
         curl -OL https://nchc.dl.sourceforge.net/project/luabinaries/5.4.2/Tools%20Executables/lua-5.4.2_Win64_bin.zip
-        7z x lua-5.4.2_Win64_bin.zip -olua
+    - name: Unpack lua
+      run: |
+        7z x .\lua-5.4.2_Win64_bin.zip -olua
         rename-Item '.\lua\lua54.exe' -NewName 'lua.exe'
-        cd .\lua
-        ls
-        cd ..
-        $pwd=$(get-location).Path
-        [Environment]::SetEnvironmentVariable("Path",[Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) +";$pwd\lua",[EnvironmentVariableTarget]::Machine)
-        [environment]::GetEnvironmentvariable("PATH", "Machine")
     - name: test
       run: |
-        [environment]::GetEnvironmentvariable("PATH", "Machine")
-        .\lua\lua.exe .\.github\workflows\getVersion.lua -code
-        lua .\.github\workflows\getVersion.lua -code
+        .\lua\lua.exe .\.github\workflows\getVersion.lua -versionname
