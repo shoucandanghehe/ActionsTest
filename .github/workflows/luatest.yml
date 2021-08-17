@@ -18,4 +18,4 @@ jobs:
         rename-Item '.\lua\lua54.exe' -NewName 'lua.exe'
     - name: test
       run: |
-        .\lua\lua.exe .\.github\workflows\getVersion.lua -versionname
+        .\lua\lua.exe .\.github\workflows\getVersion.lua -updatename
