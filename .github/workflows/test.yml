@@ -5,56 +5,10 @@ on:
     branches: [ main ]
 
 jobs:
-  build-linux:
-    runs-on: ubuntu-20.04
-    steps:
-    - uses: actions/checkout@v2
-    - name: test
-      run: |
-        CommitID=$(git rev-parse --short "${{ GITHUB.SHA }}")
-        echo "CommitID=${CommitID}" >> $GITHUB_ENV
-        mkdir test
-        touch test.txt
-        echo ${CommitID} > test.txt
-    - name: Update
-      uses: actions/upload-artifact@v2
-      with:
-        name: Test_${{ env.CommitID }}_Linux
-        path: test.txt
   build-windows: 
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
     - name: test
       run: |
-        $CommitID="${{ GITHUB.SHA }}".Substring(0,7)
-        echo $CommitID > test.txt
-        echo "CommitID=$CommitID"
-        echo "CommitID=$CommitID" >> $env:GITHUB_ENV
-        python test.py
-    - name: GetVersion
-      run: |
-        .\.github\workflows\getVersion.bat
-    - name: Update
-      uses: actions/upload-artifact@v2
-      with:
-        name: Techmino_${{ env.Version }}_${{ env.CommitID }}_Windows
-        path: test.txt
-  build-macOS:
-    runs-on: macos-10.15
-    steps:
-    - uses: actions/checkout@v2
-    - name: test
-      run: |
-        CommitID=$(git rev-parse --short "${{ GITHUB.SHA }}")
-        echo $CommitID
-        echo "CommitID=${CommitID}" >> $GITHUB_ENV
-        mkdir test
-        echo ${CommitID} > ./test/test.txt
-        ln -s ./test/test.txt ./test/linktest.txt
-        ls ./test
-    - name: Update
-      uses: actions/upload-artifact@v2
-      with:
-        name: Test_${{ env.CommitID }}_macOS
-        path: test
+        python --version
