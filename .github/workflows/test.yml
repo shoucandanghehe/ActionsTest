@@ -24,8 +24,6 @@ jobs:
         python3 ./.github/workflows/getLatest.py -P
   build-macOS:
     runs-on: macos-10.15
-      build-linux:
-    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: test
