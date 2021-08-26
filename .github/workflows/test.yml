@@ -13,7 +13,7 @@ jobs:
       run: |
         pip install requests
         python .\.github\workflows\getLatest.py
-    build-linux:
+  build-linux:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
