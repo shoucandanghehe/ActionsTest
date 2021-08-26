@@ -11,4 +11,4 @@ jobs:
     - uses: actions/checkout@v2
     - name: test
       run: |
-        python --version
+        python .\.github\workflows\getLatest.py
