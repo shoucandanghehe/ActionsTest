@@ -22,3 +22,17 @@ jobs:
         python --version
         python3 --version
         python3 ./.github/workflows/getLatest.py -P
+  build-macOS:
+    runs-on: macos-10.15
+      build-linux:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: test
+      run: |
+        python --version
+        python3 --version
+        pip --version
+        pip3 --version
+        pip3 install requests
+        python3 ./.github/workflows/getLatest.py -P
