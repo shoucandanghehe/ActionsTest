@@ -21,4 +21,4 @@ jobs:
       run: |
         python --version
         python3 --version
-        python3 ./.github/workflows/getLatest.py -Pre
+        python3 ./.github/workflows/getLatest.py -P
