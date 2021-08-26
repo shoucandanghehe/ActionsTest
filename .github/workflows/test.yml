@@ -13,3 +13,12 @@ jobs:
       run: |
         pip install requests
         python .\.github\workflows\getLatest.py
+    build-linux:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: test
+      run: |
+        python --version
+        python3 --version
+        python3 ./.github/workflows/getLatest.py -Pre
