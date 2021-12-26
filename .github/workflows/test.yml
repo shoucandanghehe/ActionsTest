@@ -5,32 +5,35 @@ on:
     branches: [ main ]
 
 jobs:
-  build-windows: 
-    runs-on: windows-latest
+  test1: 
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: test
       run: |
-        pip install requests
-        python .\.github\workflows\getLatest.py
-  build-linux:
-    runs-on: ubuntu-20.04
+        mkdir test
+        cd test
+        touch test.1
+        touch test.2
+    - uses: actions/upload-artifact@v2
+      with:
+        name: test
+        path: test
+
+  test2:
+    runs-on: ubuntu-latest
+    needs: [ test1 ]
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      with:
+        name: test
+    - uses: actions/download-artifact@v2
+      with:
+        name: test
+        path: test
     - name: test
       run: |
-        python --version
-        python3 --version
-        python3 ./.github/workflows/getLatest.py -P
-  build-macOS:
-    runs-on: macos-10.15
-    steps:
-    - uses: actions/checkout@v2
-    - name: test
-      run: |
-        python --version
-        python3 --version
-        pip --version
-        pip3 --version
-        pip3 install requests
-        python3 ./.github/workflows/getLatest.py -P
+        ls
+        cd test
+        ls
