@@ -9,6 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: du
-      run: |
-        du -lh –max-depth=1 /*
+    - name: SSH connection to Actions
+      uses: P3TERX/debugger-action@master
