@@ -16,16 +16,16 @@ jobs:
         touch c.txt
     - name: upload a
       uses: actions/upload-artifact@v3
-        with:
-          name: a
-          path: a.txt
+      with:
+        name: a
+        path: a.txt
     - name: upload b
       uses: actions/upload-artifact@v3
-        with:
-          name: b
-          path: b.txt
+      with:
+        name: b
+        path: b.txt
     - name: upload c
       uses: actions/upload-artifact@v3
-        with:
-          name: c
-          path: c.txt
+      with:
+        name: c
+        path: c.txt
