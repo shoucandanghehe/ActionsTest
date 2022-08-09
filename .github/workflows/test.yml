@@ -23,6 +23,7 @@ jobs:
           sudo echo 'export PATH="$HOME/.poetry/bin:$PATH' >> ~/.bashrc
       - shell: bash
         run: |
+          source ~/.bashrc
           python -V
           pip -V
           pip list
