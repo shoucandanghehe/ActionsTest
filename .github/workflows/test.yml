@@ -19,7 +19,7 @@ jobs:
       - name: Install Poetry
         shell: bash
         run: |
-          pip install poetry -y
+          pip install poetry
       - shell: bash
         run: |
           python -V
