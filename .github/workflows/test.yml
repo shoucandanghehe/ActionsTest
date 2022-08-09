@@ -1,31 +1,28 @@
-name: CI test
+name: Release CI
 
 on:
   push:
-    branches: [ main ]
+    tags:
+      - "*"
+  workflow_dispatch:
 
 jobs:
-  test1:
+  release:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: touch file
-      run: |
-        touch a.txt
-        touch b.txt
-        touch c.txt
-    - name: upload a
-      uses: actions/upload-artifact@v3
-      with:
-        name: a
-        path: a.txt
-    - name: upload b
-      uses: actions/upload-artifact@v3
-      with:
-        name: b
-        path: b.txt
-    - name: upload c
-      uses: actions/upload-artifact@v3
-      with:
-        name: c
-        path: c.txt
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - shell: bash
+        run: |
+          python -V
+          pip -V
+          pip list
+          poetry -V
+      # - name: Install Poetry
+      #   shell: bash
+      #   run: |
+      #     sudo apt-get update -y
+      #     sudo apt-get upgrade -y
+      #     curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3.10 -
