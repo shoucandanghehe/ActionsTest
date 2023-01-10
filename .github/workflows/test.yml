@@ -2,28 +2,16 @@ name: Release CI
 
 on:
   push:
-    tags:
-      - "*"
   workflow_dispatch:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          repository: shoucandanghehe/nonebot-plugin-tetris-stats
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - name: Install Poetry
+      - name: test install
         shell: bash
         run: |
-          pip install poetry
-      - shell: bash
-        run: |
-          python -V
-          pip -V
-          pip list
-          poetry -V
-
+          curl -L --retry 5 https://jrsoftware.org/download.php/is.exe -o is.exe
+          ./is.exe /verysilent
+          iscc /?
