@@ -27,6 +27,7 @@ jobs:
           curl -L --retry 5 https://jrsoftware.org/download.php/is.exe -o is.exe
           ls
           ./is.exe /verysilent
+          rm ./is.exe
           iscc /?
           ls
           python --version
