@@ -9,25 +9,15 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-      - name: test install
-        shell: pwsh
+      - name: mkdir
+        shell: bash
         run: |
-          curl -L --retry 5 https://github.com/love2d/love/releases/download/11.4/love-11.4-win32.zip -o ./temp.zip
-          7z x ./temp.zip -o./
-          rm ./temp.zip
-
-          curl -L --retry 5 https://github.com/love2d/love/releases/download/11.4/love-11.4-win64.zip -o ./temp.zip
-          7z x ./temp.zip -o./
-          rm ./temp.zip
-
-          curl -L --retry 5 http://www.angusj.com/resourcehacker/resource_hacker.zip -o ./temp.zip
-          7z x ./temp.zip -o./
-          rm ./temp.zip
-
-          curl -L --retry 5 https://jrsoftware.org/download.php/is.exe -o is.exe
-          ls
-          ./is.exe /verysilent
-          rm ./is.exe
-          iscc /?
-          ls
-          python --version
+          mkdir love-actions-windows
+      - name: Checkout issrc
+        uses: actions/checkout@v3
+        with:
+          path: ./love-actions-windows/issrc
+          repository: jrsoftware/issrc
+      - name: tree
+        run: |
+          tree ./
