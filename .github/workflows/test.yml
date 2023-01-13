@@ -28,3 +28,5 @@ jobs:
           ls
           ./is.exe /verysilent
           iscc /?
+          ls
+          python --version
