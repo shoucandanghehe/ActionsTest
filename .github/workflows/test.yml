@@ -1,4 +1,4 @@
-name: Release CI
+name: CI
 
 on:
   push:
@@ -6,18 +6,8 @@ on:
 
 jobs:
   release:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: mkdir
-        shell: bash
-        run: |
-          mkdir love-actions-windows
-      - name: Checkout issrc
-        uses: actions/checkout@v3
-        with:
-          path: ./love-actions-windows/issrc
-          repository: jrsoftware/issrc
-      - name: tree
-        run: |
-          tree ./
+    - name: Setup upterm session
+      uses: lhotari/action-upterm@v1
