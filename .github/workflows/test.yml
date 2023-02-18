@@ -22,7 +22,6 @@ jobs:
           docker exec -i ubuntu apt-get install libluajit-5.1-dev curl build-essential -y
           docker exec -i ubuntu bash -c "curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf > ~/rustup.sh"
           docker exec -i ubuntu bash -c "sh ~/rustup.sh -y"
-        # 我尝试使用 source "\$HOME/.cargo/env" 添加环境变量, 但是在 docker exec -i 里不 work
       - name: Setup rust targets
         shell: bash
         run: |
@@ -30,7 +29,7 @@ jobs:
       - name: Build CC loader
         shell: bash
         run: |
-          docker exec -i ubuntu bash -c "cd /work && make build/Linux/x64/CCloader.so"
+          docker exec -i ubuntu bash -c "source \$HOME/.cargo/env && cd /work && make build/Linux/x64/CCloader.so"
       - name: Strip libs
         shell: bash
         run: |
