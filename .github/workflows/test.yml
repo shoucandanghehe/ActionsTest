@@ -9,5 +9,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+        with:
+          repository: 26F-Studio/cold_clear_ai_love2d_wrapper
+          submodules: true
+      - name: build in docker
+        shell: docker run -it -v $(pwd):/work ubuntu:18.04
+        run: |
+          apt-get update
+          apt-get install libluajit-5.1-dev curl build-essential
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -y
+          source "$HOME/.cargo/env"
+          rustup target add x86_64-unknown-linux-gnu
+          make build/Linux/x64/CCloader.so
+          strip build/Linux/x64/CCloader.so
+      - name: Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Linux
+          path: build/Linux
