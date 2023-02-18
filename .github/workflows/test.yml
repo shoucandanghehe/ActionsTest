@@ -18,23 +18,23 @@ jobs:
       - name: Install Dependencies
         shell: bash
         run: |
-          docker exec -i ubuntu 'apt update'
-          docker exec -i ubuntu 'apt install libluajit-5.1-dev curl build-essential'
-          docker exec -i ubuntu 'curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -y'
-          docker exec -i ubuntu 'source "$HOME/.cargo/env"'
+          docker exec -i ubuntu apt update
+          docker exec -i ubuntu apt install libluajit-5.1-dev curl build-essential
+          docker exec -i ubuntu bash -c "curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf > ~/rustup.sh"
+          docker exec -i ubuntu bash -c "sh ~/rustup.sh -y"
+        # 我尝试使用 source "\$HOME/.cargo/env" 添加环境变量, 但是在 docker exec -i 里不 work
       - name: Setup rust targets
         shell: bash
         run: |
-          docker exec -i ubuntu 'rustup target add x86_64-unknown-linux-gnu'
+          docker exec -i ubuntu /root/.cargo/bin/rustup target add x86_64-unknown-linux-gnu
       - name: Build CC loader
         shell: bash
         run: |
-          docker exec -i ubuntu 'cd /work'
-          docker exec -i ubuntu 'make build/Linux/x64/CCloader.so'
+          docker exec -i ubuntu bash -c "cd /work && make build/Linux/x64/CCloader.so"
       - name: Strip libs
         shell: bash
         run: |
-          docker exec -i ubuntu 'strip build/Linux/x64/CCloader.so'
+          docker exec -i ubuntu bash -c "cd /work && strip build/Linux/x64/CCloader.so"
       - name: Artifact
         uses: actions/upload-artifact@v3
         with:
