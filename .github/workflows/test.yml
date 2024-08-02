@@ -8,34 +8,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          repository: 26F-Studio/cold_clear_ai_love2d_wrapper
-          submodules: true
-      - name: Start docker
+      - name: test
         shell: bash
-        run: docker run -id -v $(pwd):/work --name ubuntu ubuntu:18.04 /bin/bash
-      - name: Install Dependencies
-        shell: bash
-        run: |
-          docker exec -i ubuntu apt-get update -y
-          docker exec -i ubuntu apt-get install libluajit-5.1-dev curl build-essential -y
-          docker exec -i ubuntu bash -c "curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf > ~/rustup.sh"
-          docker exec -i ubuntu bash -c "sh ~/rustup.sh -y"
-      - name: Setup rust targets
-        shell: bash
-        run: |
-          docker exec -i ubuntu /root/.cargo/bin/rustup target add x86_64-unknown-linux-gnu
-      - name: Build CC loader
-        shell: bash
-        run: |
-          docker exec -i ubuntu bash -c "source \$HOME/.cargo/env && cd /work && make build/Linux/x64/CCloader.so"
-      - name: Strip libs
-        shell: bash
-        run: |
-          docker exec -i ubuntu bash -c "cd /work && strip build/Linux/x64/CCloader.so"
-      - name: Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: Linux
-          path: build/Linux
+        run: sha256deep -h
