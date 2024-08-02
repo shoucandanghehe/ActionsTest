@@ -8,6 +8,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: setup
+        shell: bash
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install hashdeep -y
       - name: test
         shell: bash
         run: sha256deep -h
